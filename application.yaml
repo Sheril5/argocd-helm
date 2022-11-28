@@ -1,14 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp-argo-application
+  name: myapp-nginx
   namespace: argocd
 spec:
   project: default
   source:
+    chart: myapp-nginx
     repoURL: https://github.com/Sheril5/argocd-helm.git
     targetRevision: HEAD
     path: dev
+    helm: 
+      releaseName: myapp-nginx
   destination:
     server: https://kubernetes.default.svc
     namespace: app5
